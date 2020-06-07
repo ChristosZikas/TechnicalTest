@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.christos.zikas.assessment.ui.SplashScreenFragment
 import com.christos.zikas.assessment.utils.dagger.view_models.getVM
-import com.christos.zikas.assessment.vm.SplashScreenVM
+import com.christos.zikas.assessment.view_models.SplashScreenVM
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

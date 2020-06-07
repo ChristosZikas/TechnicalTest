@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.christos.zikas.assessment.ui.SelectedBeerFragment
 import com.christos.zikas.assessment.utils.dagger.view_models.getVM
-import com.christos.zikas.assessment.vm.SelectedBeerVM
+import com.christos.zikas.assessment.view_models.SelectedBeerVM
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
