@@ -19,7 +19,7 @@ class SplashScreenFragment @Inject constructor() : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loading_tv.startAnimation(AnimationUtils.loadAnimation(context, R.anim.repeat_fading))
-
+        viewModel.startCount()
     }
 
 }
