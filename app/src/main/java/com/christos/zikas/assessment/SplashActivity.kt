@@ -1,9 +1,9 @@
 package com.christos.zikas.assessment
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.christos.zikas.assessment.utils.base_ui.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
