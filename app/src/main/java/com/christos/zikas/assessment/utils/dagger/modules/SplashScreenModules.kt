@@ -25,7 +25,6 @@ class SplashScreenModules {
 
     @Module
     class Providers {
-
         @Provides
         fun providesSplashScreenVM(
             viewModelFactory: ViewModelProvider.Factory,
