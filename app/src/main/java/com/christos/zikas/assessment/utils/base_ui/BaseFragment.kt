@@ -17,4 +17,5 @@ open class BaseFragment : DaggerFragment() {
         return if (layout != null) inflater.inflate(layout, container, false)
         else super.onCreateView(inflater, container, savedInstanceState)
     }
+
 }

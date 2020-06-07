@@ -4,6 +4,7 @@ import android.app.Application
 import com.christos.zikas.assessment.utils.dagger.TechApplication
 import com.christos.zikas.assessment.utils.dagger.modules.ActivityContributeModule
 import com.christos.zikas.assessment.utils.dagger.modules.AppModule
+import com.christos.zikas.assessment.utils.dagger.modules.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -15,7 +16,8 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         AppModule::class,
-        ActivityContributeModule::class
+        ActivityContributeModule::class,
+        ViewModelModule::class
     ]
 )
 interface AppComponent : AndroidInjector<TechApplication> {
