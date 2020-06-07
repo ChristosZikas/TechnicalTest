@@ -2,9 +2,11 @@ package com.christos.zikas.assessment.utils.dagger.modules
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.christos.zikas.assessment.models.SplashScreenModel
+import com.christos.zikas.assessment.models.SplashScreenModelImpl
 import com.christos.zikas.assessment.ui.SplashScreenFragment
 import com.christos.zikas.assessment.utils.dagger.view_models.getVM
-import com.christos.zikas.assessment.vm.SplashScreenVM
+import com.christos.zikas.assessment.view_models.SplashScreenVM
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -16,7 +18,6 @@ import dagger.Provides
     ]
 )
 class SplashScreenModules {
-
     @Module
     abstract class Binders {
         @Binds
@@ -25,6 +26,8 @@ class SplashScreenModules {
 
     @Module
     class Providers {
+        @Provides
+        fun providesSplashScreenModel(): SplashScreenModel = SplashScreenModelImpl()
 
         @Provides
         fun providesSplashScreenVM(

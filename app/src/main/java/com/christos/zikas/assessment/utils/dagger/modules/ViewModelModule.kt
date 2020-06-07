@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.christos.zikas.assessment.utils.dagger.view_models.ViewModelFactory
 import com.christos.zikas.assessment.utils.dagger.view_models.ViewModelKey
-import com.christos.zikas.assessment.vm.*
+import com.christos.zikas.assessment.view_models.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

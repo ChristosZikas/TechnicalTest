@@ -2,9 +2,11 @@ package com.christos.zikas.assessment.utils.dagger.modules
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.christos.zikas.assessment.models.SelectedBeerModel
+import com.christos.zikas.assessment.models.SelectedBeerModelImpl
 import com.christos.zikas.assessment.ui.BeerListFragment
 import com.christos.zikas.assessment.utils.dagger.view_models.getVM
-import com.christos.zikas.assessment.vm.BeerListVM
+import com.christos.zikas.assessment.view_models.BeerListVM
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -26,6 +28,9 @@ class BeerListModules {
 
     @Module
     class Providers {
+        @Provides
+        fun providesBeerListMode(): SelectedBeerModel = SelectedBeerModelImpl()
+
         @Provides
         fun providesSplashScreenVM(
             viewModelFactory: ViewModelProvider.Factory,
