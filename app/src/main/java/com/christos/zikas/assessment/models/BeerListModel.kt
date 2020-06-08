@@ -9,15 +9,23 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class BeerListModelImpl @Inject constructor(
-    private val api: BeerApiWrapper
-) {
+interface BeerListModel {
+    fun getList(): MutableLiveData<List<BeerModel>>
+    fun getList(page: Int, delay: Long = 300)
+    fun setLoader()
 
-    private val beerList: MutableLiveData<List<BeerModel>> = MutableLiveData()
+    val beerList: MutableLiveData<List<BeerModel>>
+    val setLoader: MutableLiveData<Unit>
+}
 
-    fun getList(): MutableLiveData<List<BeerModel>> = beerList
+class BeerListModelImpl @Inject constructor(private val api: BeerApiWrapper): BeerListModel {
 
-    fun getList(page: Int, delay: Long = 0) {
+    override val beerList: MutableLiveData<List<BeerModel>> = MutableLiveData()
+    override val setLoader: MutableLiveData<Unit> = MutableLiveData()
+    override fun getList(): MutableLiveData<List<BeerModel>> = beerList
+    override fun setLoader() = setLoader.postValue(Unit)
+
+    override fun getList(page: Int, delay: Long) {
         api.beerApi
             .getBeer(page)
             .subscribeOn(Schedulers.io())

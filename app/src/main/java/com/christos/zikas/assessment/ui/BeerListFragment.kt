@@ -28,28 +28,32 @@ class BeerListFragment : BaseFragment(), AdapterHandler {
     override fun selectBeer(selectedItem: BeerModel) = post(LoadItemEvent(selectedItem))
 
     override fun load() {
-        loader_fl.visibility = View.VISIBLE
         viewModel.retrieveNextPage()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setObserver()
-        setViews()
+        setAdapter()
     }
 
-    private fun setViews() {
+    private fun setAdapter() {
         beer_list_rv.adapter = adapter
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = RecyclerView.VERTICAL
         beer_list_rv.layoutManager = layoutManager
+        if (adapter.beerModelList.isEmpty()) viewModel.retrieveNextPage()
     }
 
     private fun setObserver() {
         viewModel.itemsRetrieved().observe(viewLifecycleOwner, Observer {
-            loader_fl.visibility = View.GONE
+            if (loader_fl.visibility == View.VISIBLE) loader_fl.visibility = View.GONE
             adapter.beerModelList.addAll(it)
             adapter.notifyDataSetChanged()
+        })
+
+        viewModel.setLoader().observe(viewLifecycleOwner, Observer {
+            if (loader_fl.visibility == View.GONE) loader_fl.visibility = View.VISIBLE
         })
     }
 
