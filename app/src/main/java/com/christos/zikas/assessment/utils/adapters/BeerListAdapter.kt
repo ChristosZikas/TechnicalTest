@@ -30,6 +30,7 @@ class BeerListAdapter(private val handler: AdapterHandler) : RecyclerView.Adapte
             firstBrewed = "asd"
             description = "descript"
             imageUrl = "https://images.punkapi.com/v2/keg.png"
+            foodPairing = listOf("pair 1", "pair 2")
         }
 
         holder.itemView.setOnClickListener { handler.selectBeer(item) }

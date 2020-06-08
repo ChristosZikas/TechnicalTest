@@ -25,8 +25,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/beer_list_image"
-            android:scaleType="fitXY"
-            tools:src="@drawable/gradient_colour" />
+            android:scaleType="centerCrop"
+            tools:src="@drawable/gradient_colour"
+            android:background="@android:color/holo_blue_dark"
+            />
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -56,6 +58,7 @@
         tools:text="2007 - 201" />
 
     <TextView
+        android:id="@+id/abv_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
