@@ -38,6 +38,8 @@ class BeerListAdapter(private val handler: AdapterHandler) :
         holder.itemView.setOnClickListener { handler.selectBeer(beer) }
     }
 
+    private fun Int.getNextPage(): Int = (this / 10) + 1
+
     class BeerVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setViews(beer: BeerModel, options: RequestOptions) {
             Glide.with(itemView.product_image_iv)
@@ -50,5 +52,3 @@ class BeerListAdapter(private val handler: AdapterHandler) :
         }
     }
 }
-
-private fun Int.getNextPage(): Int = (this / 10) + 1
