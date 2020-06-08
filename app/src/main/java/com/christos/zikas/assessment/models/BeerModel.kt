@@ -15,9 +15,4 @@ class BeerModel(
     @SerializedName("image_url") var imageUrl: String = "",
     @SerializedName("food_pairing") var foodPairing: List<String> = listOf(),
     @SerializedName("ingredients") var ingredients: IngredientsModel? = null
-) : Parcelable {
-
-}
-
-
-
+) : Parcelable

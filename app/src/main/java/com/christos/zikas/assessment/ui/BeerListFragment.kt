@@ -25,25 +25,14 @@ data class LoadItemEvent(val selectedItem: BeerModel)
 @SetContentView(layout = R.layout.fragment_beer_list)
 class BeerListFragment : BaseFragment(), AdapterHandler {
 
-    var update = false
-
-    override fun selectBeer(selectedItem: BeerModel) {
-        post(LoadItemEvent(selectedItem))
-    }
-
-    override fun load() {
-        adapter.size += 10
-        Handler().postDelayed(
-            {
-                adapter.notifyDataSetChanged()
-            }, 300
-        )
-    }
-
     @Inject
     lateinit var viewModel: BeerListVM
 
     private val adapter = BeerListAdapter(this)
+
+    override fun selectBeer(selectedItem: BeerModel) = post(LoadItemEvent(selectedItem))
+
+    override fun load() = viewModel.retrieveNextPage()
 
     @SuppressLint("CheckResult")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -55,10 +44,9 @@ class BeerListFragment : BaseFragment(), AdapterHandler {
         beer_list_rv.layoutManager = layoutManager
 
         viewModel.itemsRetrieved().observe(viewLifecycleOwner, Observer {
-            adapter.size = it.size
+            adapter.beerModelList.addAll(it)
             adapter.notifyDataSetChanged()
         })
-
 
     }
 

@@ -8,6 +8,7 @@ import javax.inject.Inject
 
 abstract class BeerListVM : ViewModel() {
     abstract fun itemsRetrieved(): LiveData<List<BeerModel>>
+    abstract fun retrieveNextPage(): Unit
 }
 
 class BeerListVMImpl @Inject constructor(private val beerListModel: BeerListModelImpl) :
@@ -18,10 +19,10 @@ class BeerListVMImpl @Inject constructor(private val beerListModel: BeerListMode
     override fun itemsRetrieved(): LiveData<List<BeerModel>> = beerListModel.getList()
 
     init {
-        getList()
+        retrieveNextPage()
     }
 
-    fun getList() = beerListModel.getList(++currentPage)
+    override fun retrieveNextPage() = beerListModel.getList(++currentPage)
 
 
 }

@@ -13,10 +13,9 @@
         android:layout_marginStart="@dimen/dim_12"
         android:layout_marginTop="@dimen/dim_8"
         android:layout_marginBottom="@dimen/dim_8"
-        android:background="@color/colorAccent"
+        android:backgroundTint="@color/lightBlue"
         app:cardCornerRadius="@dimen/dim_16"
         app:cardElevation="0dp"
-        android:backgroundTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,10 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/beer_list_image"
-            android:scaleType="fitXY"
-            tools:src="@mipmap/ic_launcher"
-            app:srcCompat="@drawable/abc_vector_test"
-            />
+            android:scaleType="fitCenter"
+            tools:src="@mipmap/ic_launcher" />
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -39,16 +36,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dim_20"
         android:layout_marginTop="@dimen/dim_24"
-        android:textStyle="bold"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/image_card"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Punk IPA 2007 - 2010"
-        android:text="Punk IPA 2007 - 2010"
-        />
+        tools:text="Punk IPA 2007 - 2010" />
 
     <TextView
+        android:id="@+id/abv_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -57,8 +53,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/image_card"
         app:layout_constraintTop_toBottomOf="@id/title_tv"
-        tools:text="ABV - 6.0"
-        android:text="ABV - 6.0"
-        />
+        tools:text="ABV - 6.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
