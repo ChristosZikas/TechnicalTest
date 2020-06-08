@@ -13,7 +13,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/selected_image_card"
-            android:layout_width="@dimen/square_card_small"
+            android:layout_width="@dimen/square_card_large"
             android:layout_height="@dimen/square_card_large"
             android:layout_marginTop="@dimen/dim_20"
             app:cardCornerRadius="@dimen/dim_16"

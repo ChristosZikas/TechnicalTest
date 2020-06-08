@@ -16,6 +16,7 @@ class TechTestActivity : BaseActivity() {
 
     private val beerListFragment by lazy { BeerListFragment() }
     private val selectedBeerFragment by lazy { SelectedBeerFragment() }
+    var hasBack = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,18 +31,27 @@ class TechTestActivity : BaseActivity() {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-    fun on(e: SplashScreenCompletedEvent) {
+    fun on(e: SplashScreenCompletedEvent) = loadListFragment()
+
+    private fun loadListFragment() {
+        hasBack = false
         replaceFragment(beerListFragment)
         removeSticky(SplashScreenCompletedEvent::class.java)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     fun on(e: LoadItemEvent) {
+        hasBack = true
         val bundle =
             Bundle().apply { putParcelable(getString(R.string.selected_item), e.selectedItem) }
         selectedBeerFragment.arguments = bundle
         replaceFragment(selectedBeerFragment)
         removeSticky(LoadItemEvent::class.java)
     }
+
+    override fun onBackPressed() {
+        if (hasBack) loadListFragment()
+    }
+
 
 }
