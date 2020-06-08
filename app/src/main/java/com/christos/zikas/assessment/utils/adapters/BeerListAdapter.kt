@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.christos.zikas.assessment.R
 import com.christos.zikas.assessment.models.BeerModel
-import com.christos.zikas.assessment.ui.AdapterHandler
+import com.christos.zikas.assessment.models.AdapterHandler
 import com.christos.zikas.assessment.utils.StringUtils
 import kotlinx.android.synthetic.main.rv_beer_list.view.*
 

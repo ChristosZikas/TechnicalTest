@@ -1,12 +1,12 @@
 package com.christos.zikas.assessment.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.christos.zikas.assessment.R
+import com.christos.zikas.assessment.models.AdapterHandler
 import com.christos.zikas.assessment.models.BeerModel
 import com.christos.zikas.assessment.utils.adapters.BeerListAdapter
 import com.christos.zikas.assessment.utils.base_ui.BaseFragment
@@ -14,11 +14,6 @@ import com.christos.zikas.assessment.utils.base_ui.SetContentView
 import com.christos.zikas.assessment.view_models.BeerListVM
 import kotlinx.android.synthetic.main.fragment_beer_list.*
 import javax.inject.Inject
-
-interface AdapterHandler {
-    fun load()
-    fun selectBeer(selectedItem: BeerModel)
-}
 
 data class LoadItemEvent(val selectedItem: BeerModel)
 
@@ -32,22 +27,30 @@ class BeerListFragment : BaseFragment(), AdapterHandler {
 
     override fun selectBeer(selectedItem: BeerModel) = post(LoadItemEvent(selectedItem))
 
-    override fun load() = viewModel.retrieveNextPage()
+    override fun load() {
+        loader_fl.visibility = View.VISIBLE
+        viewModel.retrieveNextPage()
+    }
 
-    @SuppressLint("CheckResult")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setObserver()
+        setViews()
+    }
 
+    private fun setViews() {
         beer_list_rv.adapter = adapter
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = RecyclerView.VERTICAL
         beer_list_rv.layoutManager = layoutManager
+    }
 
+    private fun setObserver() {
         viewModel.itemsRetrieved().observe(viewLifecycleOwner, Observer {
+            loader_fl.visibility = View.GONE
             adapter.beerModelList.addAll(it)
             adapter.notifyDataSetChanged()
         })
-
     }
 
 }

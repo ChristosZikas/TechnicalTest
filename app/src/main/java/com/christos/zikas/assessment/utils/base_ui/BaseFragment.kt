@@ -21,5 +21,4 @@ open class BaseFragment(private val bus: EventBusHandler) :
         return if (layout != null) inflater.inflate(layout, container, false)
         else super.onCreateView(inflater, container, savedInstanceState)
     }
-
 }
