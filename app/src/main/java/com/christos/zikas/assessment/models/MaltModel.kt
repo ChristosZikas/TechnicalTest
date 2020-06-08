@@ -6,6 +6,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class MaltModel(
-    @SerializedName("name") var name: String? = null,
+    @SerializedName("name") var name: String = "",
     @SerializedName("amount") var amount: AmountModel? = null
 ) : Parcelable

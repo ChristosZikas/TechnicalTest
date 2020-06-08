@@ -6,4 +6,8 @@
     <string name="selected_item">selected_item</string>
     <string name="description">Description</string>
     <string name="information">Information</string>
+    <string name="goes_well_with">Goes well with</string>
+    <string name="malt">Malt</string>
+    <string name="hops">Hops</string>
+    <string name="abv">ABV - %1$s</string>
 </resources>

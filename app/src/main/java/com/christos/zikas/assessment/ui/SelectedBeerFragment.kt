@@ -6,10 +6,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.christos.zikas.assessment.R
 import com.christos.zikas.assessment.models.BeerModel
+import com.christos.zikas.assessment.utils.StringUtils
 import com.christos.zikas.assessment.utils.base_ui.BaseFragment
 import com.christos.zikas.assessment.utils.base_ui.SetContentView
 import kotlinx.android.synthetic.main.fragment_selected_beer.*
-import java.lang.StringBuilder
 
 @SetContentView(layout = R.layout.fragment_selected_beer)
 class SelectedBeerFragment : BaseFragment() {
@@ -24,12 +24,15 @@ class SelectedBeerFragment : BaseFragment() {
 
             Glide.with(this).load(it.imageUrl).apply(options).into(product_image_iv)
             item_name_tv.text = it.name
-            item_date_tv.text = it.tagline
-            abv_tv.text = it.abv.toString()
+            item_date_tv.text = it.firstBrewed
+            abv_tv.text = StringUtils.getAbv(context!!, it.abv)
             description_tv.text = it.description
-            val sb = StringBuilder()
-            it.foodPairing.forEach { pairing -> sb.append(pairing) }
-            information_tv.text = sb.toString()
+            information_tv.text = StringUtils.generateInfrmation(
+                context!!,
+                it.tagline,
+                it.foodPairing,
+                it.ingredients
+            )
         }
     }
 }

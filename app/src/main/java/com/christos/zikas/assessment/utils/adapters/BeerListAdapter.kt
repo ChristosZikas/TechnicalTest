@@ -46,7 +46,7 @@ class BeerListAdapter(private val handler: AdapterHandler) :
                 .into(itemView.product_image_iv)
 
             itemView.title_tv.text = StringUtils.combineText(beer.name, beer.firstBrewed)
-            itemView.abv_tv.text = StringUtils.getAbv(beer.abv)
+            itemView.abv_tv.text = StringUtils.getAbv(itemView.context, beer.abv)
         }
     }
 }

@@ -8,8 +8,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/image_card"
-        android:layout_width="@dimen/square_card_list"
-        android:layout_height="@dimen/square_card_list"
+        android:layout_width="@dimen/square_card_small"
+        android:layout_height="@dimen/square_card_small"
         android:layout_marginStart="@dimen/dim_12"
         android:layout_marginTop="@dimen/dim_8"
         android:layout_marginBottom="@dimen/dim_8"
