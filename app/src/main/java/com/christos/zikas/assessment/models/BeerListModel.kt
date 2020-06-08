@@ -29,8 +29,9 @@ class BeerListModelImpl @Inject constructor(
                 }
 
                 override fun onSubscribe(d: Disposable) {}
+
                 override fun onError(e: Throwable) {
-                    getList(page, 300)
+                    getList(page, 1000)
                 }
             })
     }
