@@ -27,8 +27,8 @@ class BeerListFragment : BaseFragment(), AdapterHandler {
 
     override fun selectBeer(selectedItem: BeerModel) = post(LoadItemEvent(selectedItem))
 
-    override fun load() {
-        viewModel.retrieveNextPage()
+    override fun load(nextPage: Int) {
+        viewModel.retrieveNextPage(nextPage)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -42,7 +42,7 @@ class BeerListFragment : BaseFragment(), AdapterHandler {
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = RecyclerView.VERTICAL
         beer_list_rv.layoutManager = layoutManager
-        if (adapter.beerModelList.isEmpty()) viewModel.retrieveNextPage()
+        if (adapter.beerModelList.isEmpty()) viewModel.retrieveNextPage(1)
     }
 
     private fun setObserver() {

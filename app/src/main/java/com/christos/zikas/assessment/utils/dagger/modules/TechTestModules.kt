@@ -15,7 +15,7 @@ abstract class TechTestModules {
     @ContributesAndroidInjector(modules = [BeerListModules::class])
     abstract fun providesBeerListFragment(): BeerListFragment
 
-    @ContributesAndroidInjector(modules = [SelectedBeerModules::class])
+    @ContributesAndroidInjector
     abstract fun providesSelectedBeerFragment(): SelectedBeerFragment
 
 }

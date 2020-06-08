@@ -30,7 +30,7 @@ class BeerListAdapter(private val handler: AdapterHandler) :
     override fun getItemCount(): Int = beerModelList.size
 
     override fun onBindViewHolder(holder: BeerVH, position: Int) {
-        if (position == beerModelList.size - 1) handler.load()
+        if (position == beerModelList.size - 1) handler.load(beerModelList.size.getNextPage())
 
         val beer = beerModelList[position]
 
@@ -50,3 +50,5 @@ class BeerListAdapter(private val handler: AdapterHandler) :
         }
     }
 }
+
+private fun Int.getNextPage(): Int = (this / 10) + 1

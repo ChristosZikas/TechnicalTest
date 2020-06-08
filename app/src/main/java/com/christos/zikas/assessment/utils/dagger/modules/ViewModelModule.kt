@@ -25,9 +25,4 @@ abstract class ViewModelModule {
     @ViewModelKey(BeerListVM::class)
     abstract fun bindsBeerListVM(viewModel: BeerListVMImpl): ViewModel
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(SelectedBeerVM::class)
-    abstract fun bindsSleectedBeerVM(viewModel: SelectedBeerVMImpl): ViewModel
-
 }
