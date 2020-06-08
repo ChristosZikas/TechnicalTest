@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.christos.zikas.assessment.ui.BeerListFragment
 import com.christos.zikas.assessment.utils.dagger.view_models.getVM
+import com.christos.zikas.assessment.utils.retrofit.BeerApiWrapper
 import com.christos.zikas.assessment.view_models.BeerListVM
 import dagger.Binds
 import dagger.Module

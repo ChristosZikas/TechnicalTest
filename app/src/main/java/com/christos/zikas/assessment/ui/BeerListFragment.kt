@@ -3,6 +3,7 @@ package com.christos.zikas.assessment.ui
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.christos.zikas.assessment.R
@@ -39,22 +40,25 @@ class BeerListFragment : BaseFragment(), AdapterHandler {
         )
     }
 
-
     @Inject
     lateinit var viewModel: BeerListVM
 
-    val adapter = BeerListAdapter(this)
-
+    private val adapter = BeerListAdapter(this)
 
     @SuppressLint("CheckResult")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         beer_list_rv.adapter = adapter
-
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = RecyclerView.VERTICAL
         beer_list_rv.layoutManager = layoutManager
+
+        viewModel.itemsRetrieved().observe(viewLifecycleOwner, Observer {
+            adapter.size = it.size
+            adapter.notifyDataSetChanged()
+        })
+
 
     }
 

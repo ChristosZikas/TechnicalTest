@@ -10,7 +10,7 @@ import com.christos.zikas.assessment.ui.AdapterHandler
 
 class BeerListAdapter(private val handler: AdapterHandler) : RecyclerView.Adapter<BeerListAdapter.BeerVH>() {
 
-    var size = 10
+    var size = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BeerVH {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_beer_list, parent, false)
