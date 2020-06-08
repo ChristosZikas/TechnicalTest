@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.christos.zikas.assessment.utils.eventbus.EventBusHandler
+import com.christos.zikas.assessment.utils.eventbus.EventBusHandlerImpl
 import dagger.android.support.DaggerFragment
 
-open class BaseFragment : DaggerFragment() {
+open class BaseFragment(private val bus: EventBusHandler) :
+    DaggerFragment(), EventBusHandler by bus {
+    constructor() : this(EventBusHandlerImpl())
 
     override fun onCreateView(
         inflater: LayoutInflater,

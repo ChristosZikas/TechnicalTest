@@ -1,14 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_dark"
     tools:context=".ui.TechTestActivity">
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/selected_image_card"
+        android:layout_width="@dimen/square_card_selected"
+        android:layout_height="@dimen/square_card_selected"
+        android:layout_marginStart="@dimen/dim_16"
+        android:layout_marginTop="@dimen/dim_20"
+        android:background="@color/colorAccent"
+        app:cardCornerRadius="@dimen/dim_16"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/product_image_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/beer_list_image"
+            android:scaleType="fitXY"
+            tools:src="@drawable/gradient_colour" />
+
+    </com.google.android.material.card.MaterialCardView>
+
     <TextView
-        android:id="@+id/text"
-        android:text="SELECTED BEER"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/item_name_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dim_24"
+        android:layout_marginTop="@dimen/dim_16"
+        android:layout_marginEnd="@dimen/dim_24"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/selected_image_card"
+        app:layout_constraintTop_toTopOf="@+id/selected_image_card"
+        tools:text="Punk IPA" />
+
+    <TextView
+        android:id="@+id/item_date_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/item_name_tv"
+        app:layout_constraintStart_toStartOf="@id/item_name_tv"
+        app:layout_constraintTop_toBottomOf="@id/item_name_tv"
+        tools:text="2007 - 201" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/item_date_tv"
+        app:layout_constraintStart_toStartOf="@id/item_name_tv"
+        app:layout_constraintTop_toBottomOf="@id/item_date_tv"
+        tools:text="ABV - 6.0" />
+
+
+    <TextView
+        android:id="@+id/description_header_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dim_16"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/dim_16"
+        android:text="@string/description"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selected_image_card" />
+
+    <TextView
+        android:id="@+id/description_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_16"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/description_header_tv"
+        app:layout_constraintStart_toStartOf="@id/description_header_tv"
+        app:layout_constraintTop_toBottomOf="@id/description_header_tv" />
+
+
+    <TextView
+        android:id="@+id/information_header_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dim_16"
+        android:layout_marginTop="@dimen/dim_16"
+        android:layout_marginEnd="@dimen/dim_16"
+        android:text="@string/information"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description_tv" />
+
+    <TextView
+        android:id="@+id/information_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_16"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/information_header_tv"
+        app:layout_constraintStart_toStartOf="@id/information_header_tv"
+        app:layout_constraintTop_toBottomOf="@id/information_header_tv" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

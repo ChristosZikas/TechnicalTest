@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="square_card_list">100dp</dimen>
+    <dimen name="square_card_selected">150dp</dimen>
+    <dimen name="dim_8">8dp</dimen>
+    <dimen name="dim_12">12dp</dimen>
+    <dimen name="dim_16">16dp</dimen>
+    <dimen name="dim_20">20dp</dimen>
+    <dimen name="dim_24">24dp</dimen>
+
+</resources>

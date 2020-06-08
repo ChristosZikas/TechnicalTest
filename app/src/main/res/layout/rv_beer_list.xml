@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/image_card"
+        android:layout_width="@dimen/square_card_list"
+        android:layout_height="@dimen/square_card_list"
+        android:layout_marginStart="@dimen/dim_12"
+        android:layout_marginTop="@dimen/dim_8"
+        android:layout_marginBottom="@dimen/dim_8"
+        android:background="@color/colorAccent"
+        app:cardCornerRadius="@dimen/dim_16"
+        app:cardElevation="0dp"
+        android:backgroundTint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/product_image_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/beer_list_image"
+            android:scaleType="fitXY"
+            tools:src="@mipmap/ic_launcher"
+            app:srcCompat="@drawable/abc_vector_test"
+            />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dim_20"
+        android:layout_marginTop="@dimen/dim_24"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_card"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Punk IPA 2007 - 2010"
+        android:text="Punk IPA 2007 - 2010"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_card"
+        app:layout_constraintTop_toBottomOf="@id/title_tv"
+        tools:text="ABV - 6.0"
+        android:text="ABV - 6.0"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

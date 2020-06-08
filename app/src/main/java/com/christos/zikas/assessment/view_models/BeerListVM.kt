@@ -7,4 +7,6 @@ import javax.inject.Inject
 abstract class BeerListVM : ViewModel()
 
 class BeerListVMImpl @Inject constructor(private val beerListModel: BeerListModelImpl) :
-    BeerListVM()
+    BeerListVM() {
+
+}

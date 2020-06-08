@@ -14,8 +14,8 @@ import org.greenrobot.eventbus.ThreadMode
 @SetContentView(layout = R.layout.activity_main)
 class TechTestActivity : BaseActivity() {
 
-    val beerListFragment by lazy { BeerListFragment() }
-    val selectedBeerFragment by lazy { SelectedBeerFragment() }
+    private val beerListFragment by lazy { BeerListFragment() }
+    private val selectedBeerFragment by lazy { SelectedBeerFragment() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +33,15 @@ class TechTestActivity : BaseActivity() {
     fun on(e: SplashScreenCompletedEvent) {
         replaceFragment(beerListFragment)
         removeSticky(SplashScreenCompletedEvent::class.java)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    fun on(e: LoadItemEvent) {
+        val bundle =
+            Bundle().apply { putParcelable(getString(R.string.selected_item), e.selectedItem) }
+        selectedBeerFragment.arguments = bundle
+        replaceFragment(selectedBeerFragment)
+        removeSticky(LoadItemEvent::class.java)
     }
 
 }
