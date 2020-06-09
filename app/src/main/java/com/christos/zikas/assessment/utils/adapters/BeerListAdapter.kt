@@ -7,13 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.christos.zikas.assessment.R
-import com.christos.zikas.assessment.models.BeerModel
 import com.christos.zikas.assessment.models.AdapterHandler
+import com.christos.zikas.assessment.models.BeerModel
 import com.christos.zikas.assessment.utils.StringUtils
 import kotlinx.android.synthetic.main.rv_beer_list.view.*
 
 class BeerListAdapter(private val handler: AdapterHandler) :
     RecyclerView.Adapter<BeerListAdapter.BeerVH>() {
+    companion object {
+        const val ITEMS_PER_PAGE = 10
+    }
 
     val beerModelList = mutableListOf<BeerModel>()
 
@@ -38,7 +41,7 @@ class BeerListAdapter(private val handler: AdapterHandler) :
         holder.itemView.setOnClickListener { handler.selectBeer(beer) }
     }
 
-    fun getNextPage() = (beerModelList.size / 10) + 1
+    fun getNextPage() = (beerModelList.size / ITEMS_PER_PAGE) + 1
 
     class BeerVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setViews(beer: BeerModel, options: RequestOptions) {
