@@ -3,7 +3,9 @@ package com.christos.zikas.assessment.models
 import com.christos.zikas.assessment.utils.eventbus.EventBusHandler
 import javax.inject.Inject
 
-interface SplashScreenModel
+interface SplashScreenModel {
+    fun startCount()
+}
 
 object SplashScreenCompletedEvent
 
@@ -13,6 +15,5 @@ class SplashScreenModelImpl
     private val coroutineDelayModel: CoroutineDelayModel
 ) : SplashScreenModel,
     EventBusHandler by bus {
-    fun startCount() = coroutineDelayModel.runAsync(4000, Runnable { postSticky(SplashScreenCompletedEvent) })
-
+    override fun startCount() = coroutineDelayModel.runAsync(4000, Runnable { postSticky(SplashScreenCompletedEvent) })
 }
