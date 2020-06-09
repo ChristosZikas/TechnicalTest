@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.christos.zikas.assessment.R
 import com.christos.zikas.assessment.models.AdapterHandler
 import com.christos.zikas.assessment.models.BeerModel
+import com.christos.zikas.assessment.models.CoroutineDelayModel
 import com.christos.zikas.assessment.utils.adapters.BeerListAdapter
 import com.christos.zikas.assessment.utils.base_ui.BaseFragment
 import com.christos.zikas.assessment.utils.base_ui.SetContentView
@@ -22,6 +23,9 @@ class BeerListFragment : BaseFragment(), AdapterHandler {
 
     @Inject
     lateinit var viewModel: BeerListVM
+
+    @Inject
+    lateinit var coroutineDelayModel: CoroutineDelayModel
 
     private val adapter = BeerListAdapter(this)
 
@@ -46,6 +50,7 @@ class BeerListFragment : BaseFragment(), AdapterHandler {
     }
 
     private fun setObserver() {
+
         viewModel.itemsRetrieved().observe(viewLifecycleOwner, Observer {
             if (loader_fl.visibility == View.VISIBLE) loader_fl.visibility = View.GONE
             adapter.beerModelList.addAll(it)
@@ -54,6 +59,10 @@ class BeerListFragment : BaseFragment(), AdapterHandler {
 
         viewModel.setLoader().observe(viewLifecycleOwner, Observer {
             if (loader_fl.visibility == View.GONE) loader_fl.visibility = View.VISIBLE
+        })
+
+        viewModel.error().observe(viewLifecycleOwner, Observer {
+            coroutineDelayModel.runAsync(1000, Runnable { viewModel.retrieveNextPage(adapter.getNextPage()) })
         })
     }
 

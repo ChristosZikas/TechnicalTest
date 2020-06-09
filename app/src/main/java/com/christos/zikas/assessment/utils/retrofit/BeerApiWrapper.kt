@@ -1,5 +1,6 @@
 package com.christos.zikas.assessment.utils.retrofit
 
+import android.util.Log
 import com.christos.zikas.assessment.models.BeerModel
 import com.christos.zikas.assessment.models.ItemApiHandler
 import io.reactivex.SingleObserver
@@ -13,7 +14,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class BeerApiWrapper {
+interface BeerApiWrapper {
+    fun retrieveBeerList(handler: ItemApiHandler)
+}
+
+class BeerApiWrapperImpl: BeerApiWrapper {
     companion object {
         const val BASE_URL = "https://api.punkapi.com/v2/"
     }
@@ -33,12 +38,12 @@ class BeerApiWrapper {
             .create(BeerApi::class.java)
     }
 
-    fun retrieveBeerList(handler: ItemApiHandler) {
+    override fun retrieveBeerList(handler: ItemApiHandler) {
         beerApi
             .getBeer(handler.page)
             .subscribeOn(Schedulers.io())
-            .delay(handler.delay, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
+            .delay(300, TimeUnit.MILLISECONDS)
             .subscribe(object : SingleObserver<List<BeerModel>> {
                 override fun onSuccess(responseList: List<BeerModel>) = handler.onSuccess(responseList)
                 override fun onError(e: Throwable) = handler.onError(e)
