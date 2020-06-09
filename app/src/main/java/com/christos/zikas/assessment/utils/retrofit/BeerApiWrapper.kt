@@ -6,35 +6,16 @@ import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 interface BeerApiWrapper {
     fun retrieveBeerList(page: Int, handler: ItemApiHandler)
 }
 
-open class BeerApiWrapperImpl : BeerApiWrapper {
+open class BeerApiWrapperImpl @Inject constructor(private val beerApi: BeerApi) : BeerApiWrapper {
     companion object {
         const val BASE_URL = "https://api.punkapi.com/v2/"
-    }
-
-    private var client: OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
-        ).build()
-
-    var beerApi: BeerApi
-
-    init {
-        beerApi = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .client(client)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(BeerApi::class.java)
     }
 
     override fun retrieveBeerList(page: Int, handler: ItemApiHandler) {
