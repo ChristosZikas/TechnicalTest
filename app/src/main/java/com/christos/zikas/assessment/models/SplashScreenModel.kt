@@ -1,9 +1,6 @@
 package com.christos.zikas.assessment.models
 
 import com.christos.zikas.assessment.utils.eventbus.EventBusHandler
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 interface SplashScreenModel
@@ -11,12 +8,11 @@ interface SplashScreenModel
 object SplashScreenCompletedEvent
 
 class SplashScreenModelImpl
-@Inject constructor(private val bus: EventBusHandler) : SplashScreenModel,
+@Inject constructor(
+    private val bus: EventBusHandler,
+    private val coroutineDelayModel: CoroutineDelayModel
+) : SplashScreenModel,
     EventBusHandler by bus {
-    fun startCount() {
-        GlobalScope.async {
-            delay(4000)
-            bus.postSticky(SplashScreenCompletedEvent)
-        }
-    }
+    fun startCount() = coroutineDelayModel.runAsync(4000, Runnable { postSticky(SplashScreenCompletedEvent) })
+
 }
