@@ -18,7 +18,7 @@ interface BeerListModel {
     val setLoader: MutableLiveData<Unit>
 }
 
-class BeerListModelImpl @Inject constructor(private val api: BeerApiWrapper): BeerListModel {
+class BeerListModelImpl @Inject constructor(private val api: BeerApiWrapper) : BeerListModel {
 
     override val beerList: MutableLiveData<List<BeerModel>> = MutableLiveData()
     override val setLoader: MutableLiveData<Unit> = MutableLiveData()
@@ -26,21 +26,11 @@ class BeerListModelImpl @Inject constructor(private val api: BeerApiWrapper): Be
     override fun setLoader() = setLoader.postValue(Unit)
 
     override fun getList(page: Int, delay: Long) {
-        api.beerApi
-            .getBeer(page)
-            .subscribeOn(Schedulers.io())
-            .delay(delay, TimeUnit.MILLISECONDS)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : SingleObserver<List<BeerModel>> {
-                override fun onSuccess(responseList: List<BeerModel>) {
-                    beerList.value = responseList
-                }
-
-                override fun onSubscribe(d: Disposable) {}
-
-                override fun onError(e: Throwable) {
-                    getList(page, 1000)
-                }
-            })
+        api.retrieveBeerList(object : ItemApiHandler {
+            override fun onSuccess(responseList: List<BeerModel>) = beerList.postValue(responseList)
+            override fun onError(e: Throwable) = getList(page, 1000)
+            override val page: Int = page
+            override val delay: Long = delay
+        })
     }
 }
