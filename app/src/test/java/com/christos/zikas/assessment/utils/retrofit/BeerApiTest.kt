@@ -15,7 +15,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.net.HttpURLConnection
 
-class BeerApiWrapperTest {
+class BeerApiTest {
 
     lateinit var api: BeerApi
     private val mockServer by lazy { MockWebServer() }

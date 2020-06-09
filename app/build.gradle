@@ -51,7 +51,7 @@ dependencies {
     testImplementation 'com.googlecode.zohhak:zohhak:1.1.1'
     implementation 'org.hamcrest:hamcrest-library:2.2'
     testImplementation 'android.arch.core:core-testing:1.1.1'
-    implementation 'com.squareup.okhttp3:mockwebserver:4.7.1'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.7.1'
 
     //Dagger
     implementation "com.google.dagger:dagger:$dagger_version"

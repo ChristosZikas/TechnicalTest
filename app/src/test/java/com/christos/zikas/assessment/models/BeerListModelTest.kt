@@ -10,7 +10,7 @@ import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 
-class BeerListModelImplTest {
+class BeerListModelTest {
 
     lateinit var model: BeerListModelImpl
     lateinit var api: BeerApiWrapper
